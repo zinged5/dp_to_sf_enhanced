@@ -73,9 +73,9 @@ def dp_to_sf_output(dp_file):
                                'dependsOn': parse_dependency(obj.get('dependsOn'))}
 
         if obj.get('type') == 'Ec2Resource':
-            resources[obj['id']] = obj
+            resources['ec2_resource'] = obj
         if obj.get('type') == 'EmrCluster':
-            resources[obj['id']] = obj
+            resources['emr_resource'] = obj
         if obj.get('type') == 'HttpProxy':
             http[obj['id']] = obj
 

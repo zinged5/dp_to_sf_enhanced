@@ -45,58 +45,59 @@ def make_changes_to_cfg(v1_file,dev_dp_file):
         output['environment']['myLastXDay'] = output["environment"].get("myLast_X_Days")
         del output['environment']['myLast_X_Days']
     # emr changes
-    output['resources']['emr_resource'] = output['resources'].get(dp_dict.get('emr_resource'))
-    output['resources']['emr_resource']['name'] = f'sf_{output["resources"]["emr_resource"]["name"]}'
-    output['resources']['emr_resource']['StepConcurrencyLevel'] = 2
-    output['resources']['emr_resource']['MinimumCapacityUnits'] = 1
-    output['resources']['emr_resource']['MaximumCapacityUnits'] = 2
-    output['resources']['emr_resource']['MaximumOnDemandCapacityUnits'] = 2
-    output['resources']['emr_resource']['MaximumCoreCapacityUnits']= 2
-    output['emr']['releaseLabel']=dp_dict.get('myEmrVersion')
-    output['emr']['region']=dp_dict.get('myRegion')
-    output['emr']['subnetId'] = dp_dict.get('mySubnetId')
-    output['emr']['emrManagedMasterSecurityGroupId']=dp_dict.get('myMasterSecurityGroup')
-    output['emr']['emrManagedSlaveSecurityGroupId']=dp_dict.get('mySlaveSecurityGroup')
-    output['emr']['serviceAccessSecurityGroupId']=dp_dict.get('myServiceAccessSecurityGroup')
-    output['emr']['serviceRole']=dp_dict.get('role')
-    output['emr']['jobflowRole']=dp_dict.get('resourceRole')
-    output['emr']['logUri']=f's3://{output["environment"].get("myBucket")}/stepfunctions/emr/logs/{output["environment"].get("mySfn")}/'
-    output['emr']['http_proxy'] = dp_dict.get('hostname')
-    output['emr']['http_port'] = dp_dict.get('port')
-    output['schedule']= {"scheduledAt": "",
-                                        "frequency": "",
-                                        "day": ""}
-    del output['resources'][dp_dict.get('emr_resource')]
-    del output['resources']['emr_resource']['id']
-    del output['resources']['emr_resource']['type']
-    del output['resources']['emr_resource']['releaseLabel']
-    del output['resources']['emr_resource']['subnetId']
-    del output['resources']['emr_resource']['emrManagedMasterSecurityGroupId']
-    del output['resources']['emr_resource']['emrManagedSlaveSecurityGroupId']
-    del output['resources']['emr_resource']['serviceAccessSecurityGroupId']
-    del output['resources']['emr_resource']['region']
-    del output['resources']['emr_resource']['applications']
-    del output['resources']['emr_resource']['actionOnTaskFailure']
-    del output['resources']['emr_resource']['httpProxy']
-    del output['emr']['myEmrVersion']
-    del output['emr']['myRegion']
-    del output['emr']['mySubnetId']
-    del output['emr']['myMasterSecurityGroup']
-    del output['emr']['mySlaveSecurityGroup']
-    del output['emr']['myServiceAccessSecurityGroup']
-    del output['emr']['myMasterInstanceType']
-    del output['emr']['myCoreInstanceType']
-    del output['emr']['myInstanceCount']
+    if output['resources'].get(dp_dict.get('emr_resource')):
+        # output['resources']['emr_resource'] = output['resources'].get(dp_dict.get('emr_resource'))
+        output['resources']['emr_resource']['name'] = f'sf_{output["resources"]["emr_resource"]["name"]}'
+        output['resources']['emr_resource']['StepConcurrencyLevel'] = 2
+        output['resources']['emr_resource']['MinimumCapacityUnits'] = 1
+        output['resources']['emr_resource']['MaximumCapacityUnits'] = 2
+        output['resources']['emr_resource']['MaximumOnDemandCapacityUnits'] = 2
+        output['resources']['emr_resource']['MaximumCoreCapacityUnits']= 2
+        output['emr']['releaseLabel']=dp_dict.get('myEmrVersion')
+        output['emr']['region']=dp_dict.get('myRegion')
+        output['emr']['subnetId'] = dp_dict.get('mySubnetId')
+        output['emr']['emrManagedMasterSecurityGroupId']=dp_dict.get('myMasterSecurityGroup')
+        output['emr']['emrManagedSlaveSecurityGroupId']=dp_dict.get('mySlaveSecurityGroup')
+        output['emr']['serviceAccessSecurityGroupId']=dp_dict.get('myServiceAccessSecurityGroup')
+        output['emr']['serviceRole']=dp_dict.get('role')
+        output['emr']['jobflowRole']=dp_dict.get('resourceRole')
+        output['emr']['logUri']=f's3://{output["environment"].get("myBucket")}/stepfunctions/emr/logs/{output["environment"].get("mySfn")}/'
+        output['emr']['http_proxy'] = dp_dict.get('hostname')
+        output['emr']['http_port'] = dp_dict.get('port')
+        output['schedule']= {"scheduledAt": "",
+                                            "frequency": "",
+                                            "day": ""}
+        del output['resources']['emr_resource']
+        del output['resources']['emr_resource']['id']
+        del output['resources']['emr_resource']['type']
+        del output['resources']['emr_resource']['releaseLabel']
+        del output['resources']['emr_resource']['subnetId']
+        del output['resources']['emr_resource']['emrManagedMasterSecurityGroupId']
+        del output['resources']['emr_resource']['emrManagedSlaveSecurityGroupId']
+        del output['resources']['emr_resource']['serviceAccessSecurityGroupId']
+        del output['resources']['emr_resource']['region']
+        del output['resources']['emr_resource']['applications']
+        del output['resources']['emr_resource']['actionOnTaskFailure']
+        del output['resources']['emr_resource']['httpProxy']
+        del output['emr']['myEmrVersion']
+        del output['emr']['myRegion']
+        del output['emr']['mySubnetId']
+        del output['emr']['myMasterSecurityGroup']
+        del output['emr']['mySlaveSecurityGroup']
+        del output['emr']['myServiceAccessSecurityGroup']
+        del output['emr']['myMasterInstanceType']
+        del output['emr']['myCoreInstanceType']
+        del output['emr']['myInstanceCount']
     # ec2 changes
-    output['resources']['ec2_resource'] = output['resources'].get(dp_dict.get('ec2_resource'))
-    output['resources']['ec2_resource']['name'] = f'sf_{output["resources"]["ec2_resource"]["name"]}'
-    del output['resources'][dp_dict.get('ec2_resource')]
+    # output['resources']['ec2_resource'] = output['resources'].get(dp_dict.get('ec2_resource'))
+    # output['resources']['ec2_resource']['name'] = f'sf_{output["resources"]["ec2_resource"]["name"]}'
+    # del output['resources']['ec2_resource']
     del output['resources']['ec2_resource']['id']
     del output['resources']['ec2_resource']['name']
     del output['resources']['ec2_resource']['schedule']
     del output['resources']['ec2_resource']['httpProxy']
     # outputs the json in order and sorts the 'jobs' in order.
-    output = {'environment' :{'InputStagingDir':"/tmp/","myVar1_Partition":"bdp_insert_date",**output['environment'] },"emr":output['emr'],\
+    output = {'environment' :{'InputStagingDir':"/tmp/","myVar1_Partition":"bdp_insert_date",**output['environment'] },"emr":output.get('emr'),\
                       "resources":output['resources'],"schedule":output['schedule'],"jobs": dict(sorted(dict(output['jobs']).items()))}
     return output
 
