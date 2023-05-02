@@ -1,7 +1,7 @@
 import json
 import re
 
-
+#changes parameters in the exported json to the step functions format
 def open_exported_file(v1_file):
     with open(v1_file) as f:
         file_output = json.load(f)
